@@ -6,7 +6,7 @@ print(x)
 
 # tipe dari x
 # int
-type(x)
+print(type(x))
 
 y = 3
 
@@ -17,7 +17,7 @@ print(py_sum)
 
 # tipe dari py_sum
 # int
-type(py_sum)
+print(type(py_sum))
 
 x_float = 25.0
 float_sum = x_float + y
@@ -25,7 +25,7 @@ float_sum = x_float + y
 # tipe dari float_sum
 # float
 # float + int = float
-type(float_sum)
+print(type(float_sum))
 
 # Skalar dalam PyTorch
 # - PyTorch didesain dengan sifat yang pythonic dengan sifat dan perilaku yang menyerupai array pada NumPy
@@ -34,5 +34,7 @@ type(float_sum)
 
 import torch
 x_pt = torch.tensor(25)
+
+print(type(x_pt))
 
 # pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
