@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import torch
 
 # AFFINE TRANSFORMATION VIA MATRIX APPLICATION
 print('\n---AFFINE TRANSFORMATION VIA MATRIX APPLICATION')
@@ -150,4 +151,87 @@ plot_vectors([vectorfy(V, 0), vectorfy(V, 1), vectorfy(V, 2), vectorfy(V, 3), ve
     AV, 2), vectorfy(AV, 3)], ['lightblue', 'lightgreen', 'lightgray', 'orange', 'blue', 'green', 'gray', 'red'])
 plt.xlim(-4, 6)
 plt.ylim(-5, 5)
+plt.show()
+
+print('\n---EIGENVECTORS AND EIGENVALUES')
+print('A:')
+print(A)
+print('\nMenggunakan eig() pada NumPy akan mengembalikan tuple yang mengandung vektor dari eigenvalues dan matriks eigenvektor')
+print('lambdas, v = np.linalg.eig(A):')
+lambdas, V = np.linalg.eig(A)
+print('V:')
+print(V)
+print('lambdas:')
+print(lambdas)
+v = V[:, 0]
+print('\nv:')
+print(v)
+lambduh = lambdas[0]
+print('\nlambduh: #lambdas direservasi oleh sistem python, sehingga kita menggunakan lambduh untuk mencegah error')
+print(lambduh)
+print('\nAv = np.dot(A, v):')
+Av = np.dot(A, v)
+print(Av)
+print('\nlambduh * v:')
+print(lambduh * v)
+print('\nplot_vectors([Av, v], [\'blue\', \'lightblue\'])')
+print('plt.xlim(-1, 2)')
+print('plt.ylim(-1, 2)')
+print('plt.show():')
+plot_vectors([Av, v], ['blue', 'lightblue'])
+plt.xlim(-1, 2)
+plt.ylim(-1, 2)
+plt.show()
+v2 = V[:, 1]
+lambda2 = lambdas[1]
+print('\nAv2 = np.dot(A, v2):')
+Av2 = np.dot(A, v2)
+print(Av2)
+print('\nlambda2 * v2:')
+print(lambda2 * v2)
+print(
+    '\nplot_vectors([Av, v, Av2, v2], [\'blue\', \'lightblue\', \'green\', \'lightgreen\'])')
+print('plt.xlim(-1, 4)')
+print('plt.ylim(-3, 2)')
+print('plt.show():')
+plot_vectors([Av, v, Av2, v2], ['blue', 'lightblue', 'green', 'lightgreen'])
+plt.xlim(-1, 4)
+plt.ylim(-3, 2)
+plt.show()
+A_p = torch.tensor([[-1, 4], [2, -2.]], dtype=torch.cfloat)
+print('\nA_p:')
+print(A_p)
+print('\nlambdas_p, V_p = torch.linalg.eig(A_p)')
+lambdas_p, V_p = torch.linalg.eig(A_p)
+v_p = V_p[:, 0]
+print('v_p = V_p[:, 0]:')
+print(v_p)
+print('\nlambda_p = lambdas_p[0]:')
+lambda_p = lambdas_p[0]
+print(lambda_p)
+print('\nAv_p = torch.matmul(A_p, v_p):')
+Av_p = A_p @ v_p
+print(Av_p)
+print('\nlambda_p * v_p:')
+print(lambda_p * v_p)
+v2_p = V_p[:, 1]
+print('\nv2_p = V_p[:, 1]:')
+print(v2_p)
+print('\nlambda2_p = lambdas_p[1]:')
+lambda2_p = lambdas_p[1]
+print(lambda2_p)
+print('\nAv2_p = torch.matmul(A_p, v2_p):')
+Av2_p = torch.matmul(A_p, v2_p)
+print(Av2_p)
+print('\nlambda2_p * v2_p:')
+print(lambda2_p * v2_p)
+print(
+    '\nplot_vectors([Av_p.numpy(), v_p.numpy(), Av2_p.numpy(), v2_p.numpy()], [\'blue\', \'lightblue\', \'green\', \'lightgreen\'])')
+print('plt.xlim(-1, 4)')
+print('plt.ylim(-3, 2)')
+print('plt.show():')
+plot_vectors([np.asarray(Av_p, dtype='float'), np.asarray(v_p, dtype='float'), np.asarray(Av2_p, dtype='float'), np.asarray(v2_p, dtype='float')], [
+             'blue', 'lightblue', 'green', 'lightgreen'])
+plt.xlim(-4, 3)
+plt.ylim(-2, 3)
 plt.show()
